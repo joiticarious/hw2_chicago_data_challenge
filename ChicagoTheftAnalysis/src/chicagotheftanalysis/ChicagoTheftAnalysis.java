@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class ChicagoTheftAnalysis {
     
-   
 
     /**
      * @param args the command line arguments

@@ -90,16 +90,6 @@ public class NeighborhoodTest {
       
     }
 
-    /**
-     * Test of setNeighborhood method, of class Neighborhood.
-     */
-    @Test
-    public void testSetNeighborhood() {
-        System.out.println("setNeighborhood");
-    
-        Neighborhood instance = new Neighborhood(neighborhood,neighborhood_zip);
-   
-    }
 
     /**
      * Test of getZipcode method, of class Neighborhood.
@@ -112,18 +102,6 @@ public class NeighborhoodTest {
         assertEquals(expResult, result);
       
     
-    }
-
-    /**
-     * Test of setZipcode method, of class Neighborhood.
-     */
-    @Test
-    public void testSetZipcode() {
-        System.out.println("setZipcode");
-        String zipcode = "";
-        Neighborhood instance = new Neighborhood(neighborhood,neighborhood_zip);
-        
-
     }
     
       @Test
