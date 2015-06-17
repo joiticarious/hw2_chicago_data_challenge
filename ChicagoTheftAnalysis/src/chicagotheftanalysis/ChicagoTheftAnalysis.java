@@ -20,9 +20,6 @@ public class ChicagoTheftAnalysis {
     
    
 
-   // FileReader reader;
-
-
     /**
      * @param args the command line arguments
      */
@@ -203,8 +200,7 @@ public class ChicagoTheftAnalysis {
                           
                           //if a neighborhood's record is not found in census, it is not displayed as it is
                           // irrelevant in this analysis
-                          
-                          
+
                       }
                        
                          
@@ -215,7 +211,6 @@ public class ChicagoTheftAnalysis {
             case "6":
                 
     
-                
                 System.out.println("RELATIONSHIP BETWEEN CRIME RATE AND POLICE STATION");
                 System.out.println("Neighborhood Name               Number of Police stations   Number of Theft");
                 
