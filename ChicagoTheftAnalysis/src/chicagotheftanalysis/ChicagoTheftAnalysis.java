@@ -10,7 +10,9 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Comparator;
 
 /**
  *
@@ -25,6 +27,9 @@ public class ChicagoTheftAnalysis {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        int[][] histogram = new int[183][2]; //183 records
+        
+        int[][] histogram2 = new int[53][2];
         
         String input;
         String y_or_n;
@@ -42,6 +47,8 @@ public class ChicagoTheftAnalysis {
 
       //this do-while loop runs until the user exits
         do{
+            
+         
         
         System.out.println("_____________________________________________________________________");
         System.out.println("|                    CHICAGO THEFT RATE ANALYSIS                    |");
@@ -52,8 +59,8 @@ public class ChicagoTheftAnalysis {
         System.out.println("|  2. List of Average incomes in each neighborhood                  |");
         System.out.println("|  3. List of thefts incidence in each neighborhood                 |");
         System.out.println("|  4. List of Police stations in Chicago                            |");
-        System.out.println("|  5. Relationship between Crime rate and Average income            |");
-        System.out.println("|  6. Relationship between Crime rate and Police station            |");
+        System.out.println("|  5. Correlation between Crime rate and Average income             |");
+        System.out.println("|  6. Correlation between Crime rate and Police station             |");
         System.out.println("|  7. Exit                                                          |");
         System.out.println("|___________________________________________________________________|");
         
@@ -110,6 +117,7 @@ public class ChicagoTheftAnalysis {
                 break;
                 
             case "3":
+                       
                 
                 //theft cases in neighborhoods
                 
@@ -133,6 +141,7 @@ public class ChicagoTheftAnalysis {
                 break;
             case "4":
                 
+                
                 //list of police stations
                 
                       num = 0; //resets the value of num
@@ -154,6 +163,8 @@ public class ChicagoTheftAnalysis {
                 break;
                 
             case "5":
+                
+                num = 0; //resets the value of num
                 
                 System.out.println("RELATIONSHIP BETWEEN CRIME RATE AND AVERAGE INCOME IN NEIGHBORHOODS");
                 System.out.println("Neighborhood Name    Average Income    Number of Theft");
@@ -190,8 +201,14 @@ public class ChicagoTheftAnalysis {
                           
                           if(name.equals(census.getCommunity_Area_Name())){
                               
+                              //53 records
                               
                                num++; //this is incremented for each loop 
+                               
+                                int looper = num-1;
+                   
+                   histogram2[looper][0] = Integer.valueOf(census.getPer_Capita_Income());
+                   histogram2[looper] [1] = num_of_theft;
                                
                 System.out.printf("%-4s %-24s %-10s %d  %n",num+".",neighborhood.getNeighborhood(),census.getPer_Capita_Income(),num_of_theft);
                                 break; //this break makes the program run faster
@@ -204,11 +221,49 @@ public class ChicagoTheftAnalysis {
                        
                          
                    } //end of for loop
+                   
+                   
+                   
+                     System.out.println();
+                       System.out.println();
+                         System.out.println("Histogram");
+                         System.out.println();
+                       System.out.println();
+                   
+                          Arrays.sort(histogram2, new Comparator<int[]>() {
+            @Override
+            public int compare(final int[] entry1, final int[] entry2) {
+                final int t1 = entry1[0];
+                final int t2 = entry2[0];
+                return Integer.valueOf(entry1[0]).compareTo(Integer.valueOf(entry2[0]));
+            }
+        });
+               
+               for(final int[] s: histogram2){
+                   
+                   int bar = s[1];
+                //   String 
+                   System.out.print(s[0]+" : ");
+                   
+                   for(int i=0;i<bar;i++){
+                       
+                       System.out.print("*");
+                   }
+                   System.out.println();
+                   
+                  // System.out.println(s[0]+" "+s[1]);
+                   
+               } //end of for loop
+                   
+                   
+                   
+                   
                 
                 break;
                       
             case "6":
                 
+                num = 0; //resets the value of num
     
                 System.out.println("RELATIONSHIP BETWEEN CRIME RATE AND POLICE STATION");
                 System.out.println("Neighborhood Name               Number of Police stations   Number of Theft");
@@ -239,12 +294,50 @@ public class ChicagoTheftAnalysis {
                         num++; // counter working
                         
                    
+                   
+                   int looper = num-1;
+                   
+                   histogram[looper][0] = occurence;
+                   histogram[looper] [1] = num_of_theft;
                         
                 System.out.printf("%-4s %-35s %-25s %d %n",num+".",neighborhood.getNeighborhood(),occurence,num_of_theft);
+                
+
                      
                 }//end of for loop 
-                
                
+                System.out.println();
+                       System.out.println();
+                         System.out.println("Histogram");
+                         System.out.println();
+                       System.out.println();
+                         
+                
+               Arrays.sort(histogram, new Comparator<int[]>() {
+            @Override
+            public int compare(final int[] entry1, final int[] entry2) {
+                final int t1 = entry1[0];
+                final int t2 = entry2[0];
+                return Integer.valueOf(entry1[0]).compareTo(Integer.valueOf(entry2[0]));
+            }
+        });
+               
+               for(final int[] s: histogram){
+                   
+                   int bar = s[1]; // number of theft per bar
+                //   String 
+                   System.out.print(s[0]+" : "); //this prints out each bar which also duplicates
+                   
+                   for(int i=0;i<bar;i++){
+                       
+                       System.out.print("*");
+                   }
+                   System.out.println();
+                   
+                  // System.out.println(s[0]+" "+s[1]);
+                   
+               } //end of for loop
+             
         
                 break;
                 
@@ -303,7 +396,8 @@ public class ChicagoTheftAnalysis {
    
     }//end of main method
     
-  
+    
+   
     //this method returns a list which contains zipcodes for all police stations in chicago
     
     public static List<String> policeZip(){
