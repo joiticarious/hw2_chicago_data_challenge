@@ -205,8 +205,9 @@ public class ChicagoTheftAnalysis {
                               
                                num++; //this is incremented for each loop 
                                
-                                int looper = num-1;
+                                int looper = num-1; //this is done before the first field in an array is zero
                    
+                                //the 2 d array is being assigned values
                    histogram2[looper][0] = Integer.valueOf(census.getPer_Capita_Income());
                    histogram2[looper] [1] = num_of_theft;
                                
@@ -229,6 +230,7 @@ public class ChicagoTheftAnalysis {
                    
                    num=0;
                    
+                   //this for loop displays the content of histogram2 which is a 2 d array
                    for(final int[] s: histogram2){
                        
                        num++;
@@ -248,6 +250,9 @@ public class ChicagoTheftAnalysis {
                      System.out.println();
                      System.out.println("Histogram");
                      System.out.println();
+                     
+                     //this method sorts the 2 dimensional array based on the first column and the second column is rearranged likewise
+                     //so all the data are intact
                    
                           Arrays.sort(histogram2, new Comparator<int[]>() {
             @Override
@@ -256,25 +261,26 @@ public class ChicagoTheftAnalysis {
                 final int t2 = entry2[0];
                 return Integer.valueOf(entry1[0]).compareTo(Integer.valueOf(entry2[0]));
             }
-        });
+        }); //end of Array.sorts method
                
+                          
+                          //this for loop is responsible for displaying the histogram
                for(final int[] s: histogram2){
                    
-                   int bar = s[1];
-                //   String 
-                   System.out.print(s[0]+" : ");
+                   int bar = s[1];     // the number of theft occurence is assigned to integer bar     
                    
-                   for(int i=0;i<bar;i++){
+                   System.out.print(s[0]+" : "); //this displays the average income
+                   
+                   for(int i=0;i<bar;i++){ //this for loop displays * for integer bar number of times
                        
                        System.out.print("*");
-                   }
+                   }//end of inner for loop
+                   
                    System.out.println();
                    
-                  // System.out.println(s[0]+" "+s[1]);
+           
                    
-               } //end of for loop
-                   
-                   
+               } //end of outter for loop
                    
                    
                 
@@ -317,15 +323,7 @@ public class ChicagoTheftAnalysis {
              
                         num++; // counter working
                         
-                   
-                   
-                   int looper = num-1;
-                   
-                   histogram[looper][0] = occurence;
-                   histogram[looper] [1] = num_of_theft;
-                   
-                   
-                   
+                  //the switch statement is reposible adding up the number of thefts where number of police station are the same
                   switch(occurence){
                       
                       case 0:
