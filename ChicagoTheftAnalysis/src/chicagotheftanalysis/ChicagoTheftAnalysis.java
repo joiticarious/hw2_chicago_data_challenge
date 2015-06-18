@@ -222,15 +222,32 @@ public class ChicagoTheftAnalysis {
                          
                    } //end of for loop
                    
+                   System.out.println();
+                   System.out.println("NEIGHBORHOOD INCOME VERSUS THEFT");
+                   System.out.println(" Neighborhood Income   |   Theft incidences ");
+                   System.out.println("---------------------------------------------");
+                   
+                   num=0;
+                   
+                   for(final int[] s: histogram2){
+                       
+                       num++;
+                       
+                       System.out.printf("%-4s %-30d %d %n",num+".",s[0],s[1]);
+                   }
                    
                    
                      System.out.println();
-                       System.out.println();
-                         System.out.println("Histogram");
-                         System.out.println();
-                       System.out.println();
-                       System.out.println("This is a low positive correlation");
-                       System.out.println();
+                     System.out.println();
+                     System.out.println("This is a low positive correlation.");
+                     System.out.println("Average income of people in each neighborhood is not the major factor responsible for theft rate "); 
+                     System.out.println("There might be other major factors that contributes to theft rate."); 
+                     System.out.println("Likewise, there are not records of theft incidences in certain neighborhoods which.");
+                     System.out.println("This however makes it almost impossible to make conclusion ");
+                     System.out.println();
+                     System.out.println();
+                     System.out.println("Histogram");
+                     System.out.println();
                    
                           Arrays.sort(histogram2, new Comparator<int[]>() {
             @Override
