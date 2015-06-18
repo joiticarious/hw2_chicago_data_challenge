@@ -229,6 +229,8 @@ public class ChicagoTheftAnalysis {
                          System.out.println("Histogram");
                          System.out.println();
                        System.out.println();
+                       System.out.println("This is a low positive correlation");
+                       System.out.println();
                    
                           Arrays.sort(histogram2, new Comparator<int[]>() {
             @Override
@@ -271,6 +273,11 @@ public class ChicagoTheftAnalysis {
                 // readNieghhorhoodFile() method returns list of all neighborhoods and it's list is assigned to
                 // Neighborhood class' object declared as neighborhood
                 
+                int zero=0;
+                   int one=0;
+                   int two=0;
+                   int three=0;
+                
                for (Neighborhood neighborhood: handler.readNeighborhoodFile()){
         
                    //gets zip code of the present neighborhood
@@ -299,6 +306,25 @@ public class ChicagoTheftAnalysis {
                    
                    histogram[looper][0] = occurence;
                    histogram[looper] [1] = num_of_theft;
+                   
+                   
+                   
+                  switch(occurence){
+                      
+                      case 0:
+                          zero+=num_of_theft;
+                          break;
+                      case 1:
+                          one+=num_of_theft;
+                          break;
+                      case 2:
+                          two+=num_of_theft;
+                          break;
+                      case 3:
+                          three+=num_of_theft;
+                          break;
+                      
+                  }
                         
                 System.out.printf("%-4s %-35s %-25s %d %n",num+".",neighborhood.getNeighborhood(),occurence,num_of_theft);
                 
@@ -306,39 +332,25 @@ public class ChicagoTheftAnalysis {
                      
                 }//end of for loop 
                
+               System.out.println();
+               System.out.println();
+               
+               
+               System.out.println("Police Station  Versus Theft occurences");
+               System.out.println("Police Station    |    Theft     ");
+               System.out.println("---------------------------------------");
+               System.out.printf("%-25s %d %n","0",zero);
+               System.out.printf("%-25s %d %n","1",one);
+               System.out.printf("%-25s %d %n","2",two);
+               
+               
                 System.out.println();
                        System.out.println();
-                         System.out.println("Histogram");
+                         System.out.println("This is a negative correlation as theft decreases when number of police stations increases");
                          System.out.println();
                        System.out.println();
                          
                 
-               Arrays.sort(histogram, new Comparator<int[]>() {
-            @Override
-            public int compare(final int[] entry1, final int[] entry2) {
-                final int t1 = entry1[0];
-                final int t2 = entry2[0];
-                return Integer.valueOf(entry1[0]).compareTo(Integer.valueOf(entry2[0]));
-            }
-        });
-               
-               for(final int[] s: histogram){
-                   
-                   int bar = s[1]; // number of theft per bar
-                //   String 
-                   System.out.print(s[0]+" : "); //this prints out each bar which also duplicates
-                   
-                   for(int i=0;i<bar;i++){
-                       
-                       System.out.print("*");
-                   }
-                   System.out.println();
-                   
-                  // System.out.println(s[0]+" "+s[1]);
-                   
-               } //end of for loop
-             
-        
                 break;
                 
                 // 7,E or e are the characters responsible for exiting the program
